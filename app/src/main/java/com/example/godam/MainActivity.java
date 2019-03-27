@@ -1,6 +1,6 @@
 package com.example.godam;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,19 +22,23 @@ public class MainActivity extends AppCompatActivity {
         login_button = (Button)findViewById(R.id.login);
         user = (EditText)findViewById(R.id.username);
         pass = (EditText)findViewById(R.id.password);
+        msg = (TextView)findViewById(R.id.errormsg);
 
         login_button.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 if(user.getText().toString().equals("admin") &&
                         user.getText().toString().equals("admin")) {
                     Toast.makeText(getApplicationContext(),
                             "Redirecting...",Toast.LENGTH_SHORT).show();
+                    Intent intent=new  Intent(MainActivity.this,supervisor.class);
+                    startActivity(intent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
                     //msg.setText("Wrong Credentials");
-                    msg.setVisibility(View.VISIBLE);
-                    msg.setBackgroundColor(Color.RED);
+                    //msg.setVisibility(View.VISIBLE);
+
 
                 }
             }
