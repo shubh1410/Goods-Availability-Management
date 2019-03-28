@@ -13,7 +13,7 @@
         android:layout_height="33dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="52dp"
-        android:text="UserName :"
+        android:text="Email :"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="?attr/dialogPreferredPadding"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Enter User Name"
+        android:hint="Enter Email"
         android:inputType="textPersonName"
         android:textColor="@color/colorPrimaryDark"
         android:textColorHint="@color/colorPrimaryDark"
@@ -64,32 +64,27 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:scrollbars="vertical"
         android:text="Login"
         android:textSize="?attr/dialogPreferredPadding"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.45"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <TextView
         android:id="@+id/errormsg"
         android:layout_width="341dp"
         android:layout_height="94dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="76dp"
         android:textAlignment="center"
         android:textColor="@color/colorPrimary"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
