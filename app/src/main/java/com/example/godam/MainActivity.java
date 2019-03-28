@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Wrong Credentials",Toast.LENGTH_SHORT).show();
                     //msg.setText("Wrong Credentials");
                     //msg.setVisibility(View.VISIBLE);
-
-
                 }
             }
         });
