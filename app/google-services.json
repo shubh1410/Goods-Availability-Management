@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "768871433293-eablj7g8gpms1klb8uvu15sqfjm85pun.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.godam",
+            "certificate_hash": "c282addf878c11373b3a0e3c6639ca3703475def"
+          }
+        },
+        {
           "client_id": "768871433293-2q9ksvm2d4oqpp7ao4lavbqu03908nel.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768871433293-2q9ksvm2d4oqpp7ao4lavbqu03908nel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
