@@ -9,9 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:windowSoftInputMode="adjustPan" android:name=".newUser"></activity>
-        <activity android:windowSoftInputMode="adjustPan" android:name=".supervisor" />
-        <activity android:windowSoftInputMode="adjustPan" android:name=".MainActivity">
+        <activity android:name=".inventorymanagerview" android:windowSoftInputMode="adjustPan"></activity>
+        <activity
+            android:name=".newUser"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".supervisor"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
