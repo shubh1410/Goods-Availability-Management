@@ -94,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+
+                                Customer customer=new Customer("supervisor",email);
+                                databaseReference.setValue(customer);
                                 Intent intent=new Intent(MainActivity.this,supervisor.class);
                                 startActivity(intent);
                                 Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
