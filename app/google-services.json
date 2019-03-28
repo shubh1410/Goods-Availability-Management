@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "768871433293",
+    "firebase_url": "https://godam-dc.firebaseio.com",
+    "project_id": "godam-dc",
+    "storage_bucket": "godam-dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768871433293:android:da370e94a1357ca8",
+        "android_client_info": {
+          "package_name": "com.example.godam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768871433293-2q9ksvm2d4oqpp7ao4lavbqu03908nel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAO8TCphr3iTmcdr_YIcVa6x89-UZq9V3E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
