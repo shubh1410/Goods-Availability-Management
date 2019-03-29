@@ -95,11 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
-                                Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, supervisor.class);
                                 startActivity(intent);
-
-
                             }
                             else{
                                 Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
