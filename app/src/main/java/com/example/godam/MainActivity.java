@@ -40,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         Log.d(TAG, "onCreate: in");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
