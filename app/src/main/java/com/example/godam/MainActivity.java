@@ -86,22 +86,21 @@ public class MainActivity extends AppCompatActivity {
 
                 final String email=user.getText().toString();
                 String pwd=pass.getText().toString();
-                
+
                 if(!email.equals("") && !pwd.equals("")) {
                     /*Toast.makeText(getApplicationContext(),
                             "Redirecting...",Toast.LENGTH_SHORT).show();*/
                     mAuth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                            if(task.isSuccessful()){
-
-                                Customer customer=new Customer("supervisor",email);
-                                databaseReference.setValue(customer);
-                                Intent intent=new Intent(MainActivity.this,supervisor.class);
+                            if(task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(MainActivity.this, supervisor.class);
                                 startActivity(intent);
-                                Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
 
-                            }else{
+
+                            }
+                            else{
                                 Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
                             }
                         }
