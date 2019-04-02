@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -171,5 +172,21 @@ public class MainActivity extends AppCompatActivity {
         user.setText(savedInstanceState.getString(uname));
         pass.setText(savedInstanceState.getString(passtext));
         Log.d(TAG, "onRestoreInstanceState: out");
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId() == R.id.Exit)
+        {
+            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
+        }
+        else if(item.getItemId() == R.id.aboutUs)
+        {
+            Toast.makeText(this,"About Us Clicked",Toast.LENGTH_SHORT).show();
+        }
+        else {
+            return super.onOptionsItemSelected(item);
+        }
+        return true;
     }
 }
