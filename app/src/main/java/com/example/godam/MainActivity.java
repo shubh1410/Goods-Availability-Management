@@ -1,8 +1,10 @@
 package com.example.godam;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
@@ -24,10 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class MainActivity extends AppCompatActivity {
-
-
-
+public class MainActivity extends AppCompatActivity
+{
     Button login_button;
     EditText user,pass;
     TextView msg;
@@ -119,13 +119,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        getMenuInflater().inflate(R.menu.main_menu,menu);
-        return true;
-    }
-
-    @Override
     protected void onRestart() {
         Log.d(TAG, "onRestart: in");
         super.onRestart();
@@ -174,11 +167,19 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "onRestoreInstanceState: out");
     }
 
+    /*For Menu Button in Action Bar*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.Exit)
         {
-            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
+            onBackPressed();
+//            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
         }
         else if(item.getItemId() == R.id.aboutUs)
         {
@@ -188,5 +189,30 @@ public class MainActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+    /*Exit Notification*/
+    @Override
+    public void onBackPressed() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.app_name);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setMessage("Do you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        finish();
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id)
+                    {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

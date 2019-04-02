@@ -17,12 +17,13 @@ public class createNewItem extends AppCompatActivity
         setContentView(R.layout.activity_create_new_item);
     }
 
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.others_menu,menu);
         return true;
     }
-
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.logOut)

@@ -18,7 +18,6 @@ public class supervisor extends AppCompatActivity
 {
     Button cuser;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -40,13 +39,13 @@ public class supervisor extends AppCompatActivity
         });
 
     }
-
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.others_menu,menu);
         return true;
     }
-
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.logOut)

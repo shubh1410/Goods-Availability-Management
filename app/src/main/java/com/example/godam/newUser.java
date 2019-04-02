@@ -14,13 +14,13 @@ public class newUser extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_user);
     }
-
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.others_menu,menu);
         return true;
     }
-
+    /*For Menu Button in Action Bar*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.logOut)
