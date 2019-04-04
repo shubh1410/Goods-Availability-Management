@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_image"
+    android:background="@drawable/gradient"
     tools:context=".createNewItem">
 
     <android.support.constraint.ConstraintLayout
@@ -14,7 +14,7 @@
 
         <EditText
             android:id="@+id/pdesc"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
@@ -30,7 +30,7 @@
 
         <EditText
             android:id="@+id/mno"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
@@ -46,7 +46,7 @@
 
         <EditText
             android:id="@+id/pbrand"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
@@ -62,10 +62,10 @@
 
         <EditText
             android:id="@+id/pname"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:hint="Enter Product Name"
@@ -74,7 +74,7 @@
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <android.support.constraint.Barrier
             android:id="@+id/barrier"
@@ -84,8 +84,8 @@
 
         <Button
             android:id="@+id/createItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="8dp"
@@ -94,16 +94,18 @@
             app:layout_constraintEnd_toEndOf="@+id/barrier"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/quantity"
+            android:background="@drawable/roundedbutton"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
             android:layout_marginStart="176dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="177dp"
             android:text="Create New Item"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,7 +115,7 @@
 
         <EditText
             android:id="@+id/quantity"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"

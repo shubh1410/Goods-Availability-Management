@@ -2,7 +2,7 @@
     <string name="app_name">Godam</string>
 
     <string-array name="userTypeList">
-        <item>Superviser</item>
         <item>Inventory Manager</item>
+        <item>Superviser</item>
     </string-array>
 </resources>
