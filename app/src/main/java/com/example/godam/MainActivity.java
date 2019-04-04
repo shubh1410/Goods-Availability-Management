@@ -178,8 +178,8 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.Exit)
         {
-            mAuth.signOut();
-           // onBackPressed();
+//            mAuth.signOut();
+           onBackPressed();
 //            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
         }
         else if(item.getItemId() == R.id.aboutUs)
