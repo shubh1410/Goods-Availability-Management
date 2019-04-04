@@ -22,7 +22,7 @@
             android:drawableLeft="@drawable/ic_action_user"
             android:ems="10"
             android:hint="User Name"
-            android:inputType="textPersonName"
+            android:inputType="textEmailAddress"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="@+id/barrier"

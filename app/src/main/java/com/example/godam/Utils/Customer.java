@@ -1,4 +1,4 @@
-package com.example.godam;
+package com.example.godam.Utils;
 
 public class Customer
 {
