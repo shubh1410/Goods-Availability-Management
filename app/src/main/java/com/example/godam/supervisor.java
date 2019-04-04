@@ -48,7 +48,7 @@ public class supervisor extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.logOut)
         {
-
+//            mAuth.signOut();
             Intent intent = new Intent(supervisor.this, MainActivity.class);
             startActivity(intent);
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_image"
+    android:background="@drawable/gradient"
     tools:context=".supervisor">
 
     <android.support.constraint.ConstraintLayout
@@ -14,30 +14,31 @@
 
         <EditText
             android:id="@+id/username"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:drawableLeft="@drawable/ic_action_user"
             android:ems="10"
-            android:hint="Enter user name"
+            android:hint="User Name"
             android:inputType="textPersonName"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="@+id/barrier"
             app:layout_constraintHorizontal_bias="0.483"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/userType" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <EditText
             android:id="@+id/lname"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Enter your last name"
+            android:hint="Last Name"
             android:inputType="textPersonName"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
@@ -48,20 +49,20 @@
 
         <EditText
             android:id="@+id/fname"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Enter your first name"
+            android:hint="First Name"
             android:inputType="textPersonName"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.467"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView12" />
+            app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <android.support.constraint.Barrier
             android:id="@+id/barrier"
@@ -71,13 +72,14 @@
 
         <EditText
             android:id="@+id/pno"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
+            android:drawableLeft="@drawable/ic_action_pno"
             android:ems="10"
-            android:hint="Enter your number without +91"
+            android:hint="Phone Number"
             android:inputType="phone"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
@@ -87,14 +89,15 @@
 
         <EditText
             android:id="@+id/password"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
-            android:hint="Enter Password"
+            android:hint="Password"
             android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_action_pass"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.467"
@@ -103,7 +106,7 @@
 
         <EditText
             android:id="@+id/cpassword"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="47dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
@@ -111,6 +114,7 @@
             android:ems="10"
             android:hint="Confirm Password"
             android:inputType="textPassword"
+            android:drawableLeft="@drawable/ic_action_pass"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
@@ -119,12 +123,13 @@
 
         <Button
             android:id="@+id/createUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="15dp"
+            android:background="@drawable/roundedbutton"
             android:text="Create User"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -134,29 +139,27 @@
         <Spinner
             android:id="@+id/userType"
             android:layout_width="wrap_content"
-            android:layout_height="47dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="50dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="24dp"
-            android:background="@color/colorPrimaryDark"
             android:entries="@array/userTypeList"
+            android:popupBackground="@drawable/gradient"
+            android:theme="@style/spinnerTheme"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/username"
+            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.356"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/pno" />
+            app:layout_constraintHorizontal_bias="0.52"
+            app:layout_constraintStart_toEndOf="@+id/textView2" />
 
         <TextView
-            android:id="@+id/textView12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:id="@+id/title"
+            android:layout_width="300dp"
+            android:layout_height="47dp"
             android:layout_marginStart="176dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="177dp"
             android:layout_marginBottom="46dp"
             android:text="Create New User"
+            android:textAlignment="center"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
             app:layout_constraintBottom_toTopOf="@+id/fname"
@@ -164,6 +167,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="91dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="52dp"
+            android:layout_marginTop="16dp"
+            android:text="Type"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pno" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>
