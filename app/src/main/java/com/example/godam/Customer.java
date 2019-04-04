@@ -5,7 +5,7 @@ public class Customer
     private String role;
     private String email;
 
-    public Customer(String role, String email)
+    public Customer(String email, String role)
     {
         this.role = role;
         this.email = email;

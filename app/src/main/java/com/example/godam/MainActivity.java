@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity
 
         mAuth = FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
-        databaseReference=database.getReference();
+        databaseReference=database.getReference("supervisor");
+        //databaseReference.keepSynced(true);
 
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -97,9 +98,17 @@ public class MainActivity extends AppCompatActivity
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
+                                Customer cust=new Customer("abc@gmail.com","ss");
+                                Customer cust1=new Customer("abcd@gmail.com","ss");
+                               /* DatabaseReference newcus=databaseReference.push();
+                                newcus.push().setValue(cust);
+                                newcus.push().setValue(cust1);*/
+                               // databaseReference.setValue(cust);
+                                databaseReference.child(cust1.getEmail()).setValue(cust1);
                                 Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(MainActivity.this, supervisor.class);
                                 startActivity(intent);
+                                //finish();
                             }
                             else{
                                 Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
@@ -178,9 +187,9 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         if(item.getItemId() == R.id.Exit)
         {
-            mAuth.signOut();
-           // onBackPressed();
-//            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
+           // mAuth.signOut();
+            onBackPressed();
+            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
         }
         else if(item.getItemId() == R.id.aboutUs)
         {
