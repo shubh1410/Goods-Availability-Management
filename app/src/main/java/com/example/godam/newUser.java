@@ -72,15 +72,22 @@ public class newUser extends AppCompatActivity {
                                                       cpassword.setError("password and confirm password do  not match");
                                                       flag = false;
                                                   }
-
+                                                  /*Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(uname);
+                                                  if (matcher.find()) {}else {
+                                                      //Toast.makeText(newUser.this, "password and confirm does not match", Toast.LENGTH_SHORT).show();
+                                                      username.setError("Email id invalid");
+                                                      flag = false;
+                                                  }
+*/
                                                   if (flag) {
                                                       NewUser user = new NewUser(fn, ln, user_type, uname, pass, no);
                                                       databaseReference.child("user").child(user.getUname()).setValue(user);
                                                       Toast.makeText(newUser.this, "User added", Toast.LENGTH_SHORT).show();
                                                       startActivity(new Intent(newUser.this, supervisor.class));
-                                                  } else {
-                                                      Toast.makeText(newUser.this, "Enter all values", Toast.LENGTH_SHORT).show();
                                                   }
+                                              }
+                                              else {
+                                                  Toast.makeText(newUser.this, "Enter all values", Toast.LENGTH_SHORT).show();
                                               }
                                           }
                                           });
@@ -104,4 +111,26 @@ public class newUser extends AppCompatActivity {
             }
             return true;
         }
+  /* private static boolean isEmailValid(String email)
+    {
+        String regExpn =
+                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
+                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
+                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
+                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
+
+        CharSequence inputStr = email;
+
+        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(inputStr);
+
+        if(matcher.matches())
+            return true;
+        else
+            return false;
+    }
+
+*/
     }

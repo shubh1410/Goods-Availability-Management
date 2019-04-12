@@ -46,6 +46,7 @@ public class createNewItem extends AppCompatActivity
             @Override
             public void onClick(View v) {
                // Item_new item=new Item_new();
+                
             }
         });
 
