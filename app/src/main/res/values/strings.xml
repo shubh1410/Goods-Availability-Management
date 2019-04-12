@@ -5,4 +5,13 @@
         <item>Inventory Manager</item>
         <item>Superviser</item>
     </string-array>
+
+    <string-array name="categoryList">
+        <item>Laptop</item>
+        <item>Headphone</item>
+        <item>Keyboard</item>
+        <item>Mouse</item>
+        <item>Speaker</item>
+        <item>Storage</item>
+    </string-array>
 </resources>

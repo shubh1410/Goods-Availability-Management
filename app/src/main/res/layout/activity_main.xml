@@ -17,7 +17,7 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="60dp"
             android:layout_marginEnd="8dp"
             android:drawableLeft="@drawable/ic_action_user"
             android:ems="10"
@@ -26,6 +26,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
@@ -53,13 +54,14 @@
             android:layout_width="150dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="64dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/roundedbutton"
             android:scrollbars="vertical"
             android:text="Login"
             android:textSize="?attr/dialogPreferredPadding"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/password" />
 
@@ -81,16 +83,15 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="393dp"
-            android:layout_height="261dp"
+            android:layout_width="223dp"
+            android:layout_height="187dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="8dp"
-            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/ic_action_pno" />
 
     </android.support.constraint.ConstraintLayout>
 

@@ -1,28 +1,28 @@
 package com.example.godam.Utils;
 
 public class Item_new {
-    private String product_id;
+    private String product_category;
     private String product_name;
     private String product_brand;
     private String model_number;
     private String product_desc;
-    private int product_quantity;
+    private String product_quantity;
 
-    public String getProduct_id() {
-        return product_id;
-    }
-
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
-    }
-
-    public Item_new(String product_id, String product_name, String product_brand, String model_number, String product_desc, int product_quantity) {
-        this.product_id = product_id;
+    public Item_new(String product_category, String product_name, String product_brand, String model_number, String product_desc, String product_quantity) {
+        this.product_category = product_category;
         this.product_name = product_name;
         this.product_brand = product_brand;
         this.model_number = model_number;
         this.product_desc = product_desc;
         this.product_quantity = product_quantity;
+    }
+
+    public String getProduct_category() {
+        return product_category;
+    }
+
+    public void setProduct_category(String product_category) {
+        this.product_category = product_category;
     }
 
     public String getProduct_name() {
@@ -57,11 +57,11 @@ public class Item_new {
         this.product_desc = product_desc;
     }
 
-    public int getProduct_quantity() {
+    public String getProduct_quantity() {
         return product_quantity;
     }
 
-    public void setProduct_quantity(int product_quantity) {
+    public void setProduct_quantity(String product_quantity) {
         this.product_quantity = product_quantity;
     }
 }
