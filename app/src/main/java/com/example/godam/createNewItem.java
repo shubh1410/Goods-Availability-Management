@@ -8,7 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import com.example.godam.Utils.Item_new;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -18,6 +21,7 @@ public class createNewItem extends AppCompatActivity
 
     Button create_item;
     EditText pname,pbrand,quantity,pdesc,mno;
+    Spinner category;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private FirebaseAuth mAuth;
@@ -29,13 +33,14 @@ public class createNewItem extends AppCompatActivity
     {
         mAuth = FirebaseAuth.getInstance();
         database= FirebaseDatabase.getInstance();
-        databaseReference=database.getReference("supervisor");
+        databaseReference=database.getReference();
         databaseReference.keepSynced(true);
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_item);
 
         create_item = (Button)findViewById(R.id.createItem);
+        category = (Spinner)findViewById(R.id.category);
         pname = (EditText)findViewById(R.id.pname);
         pbrand = (EditText)findViewById(R.id.pbrand);
         quantity = (EditText)findViewById(R.id.quantity);
@@ -45,8 +50,27 @@ public class createNewItem extends AppCompatActivity
         create_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Item_new item=new Item_new();
-                
+                String prod_category = category.getSelectedItem().toString();
+                String prod_pname    = pname.getText().toString();
+                String prod_pbrand   = pbrand.getText().toString();
+                String prod_quantity = quantity.getText().toString();
+                String prod_desc     = pdesc.getText().toString();
+                String prod_modelno  = mno.getText().toString();
+
+                if (!prod_category.isEmpty() && !prod_pname.isEmpty()    &&
+                    !prod_pbrand.isEmpty()   && !prod_quantity.isEmpty() &&
+                    !prod_desc.isEmpty()     && !prod_modelno.isEmpty())
+                {
+                    Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity);
+                    String key = databaseReference.child("Products").child(prod_category).child(prod_pbrand).push().getKey();
+                    databaseReference.child("Products").child(prod_category).child(prod_pbrand).child(key).setValue(item);
+                    Toast.makeText(createNewItem.this, "Item added", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(createNewItem.this, inventorymanagerview.class));
+                }
+                else
+                {
+                    Toast.makeText(createNewItem.this,"No Field can be EMPTY!!!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
