@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity
                             if(task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
 //                                Intent intent = new Intent(MainActivity.this, supervisor.class);
-                                Intent intent = new Intent(MainActivity.this, createNewItem.class);
+                                Intent intent = new Intent(MainActivity.this, supervisor.class);
                                 startActivity(intent);
                             }
                             else{
