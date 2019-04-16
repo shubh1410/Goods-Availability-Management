@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity
         login_button = (Button)findViewById(R.id.login);
         user = (EditText)findViewById(R.id.username);
         pass = (EditText)findViewById(R.id.password);
-        msg = (TextView)findViewById(R.id.errormsg);
+//        msg = (TextView)findViewById(R.id.errormsg);
 
         mAuth = FirebaseAuth.getInstance();
         database=FirebaseDatabase.getInstance();
