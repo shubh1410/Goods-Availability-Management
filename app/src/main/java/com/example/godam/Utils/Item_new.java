@@ -16,6 +16,19 @@ public class Item_new {
         this.product_desc = product_desc;
         this.product_quantity = product_quantity;
     }
+    public Item_new(){}
+
+    @Override
+    public String toString() {
+        return "Item_new{" +
+                "product_category='" + product_category + '\'' +
+                ", product_name='" + product_name + '\'' +
+                ", product_brand='" + product_brand + '\'' +
+                ", model_number='" + model_number + '\'' +
+                ", product_desc='" + product_desc + '\'' +
+                ", product_quantity='" + product_quantity + '\'' +
+                '}';
+    }
 
     public String getProduct_category() {
         return product_category;

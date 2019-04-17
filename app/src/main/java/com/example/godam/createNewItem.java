@@ -50,9 +50,9 @@ public class createNewItem extends AppCompatActivity
         create_item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String prod_category = category.getSelectedItem().toString();
-                String prod_pname    = pname.getText().toString();
-                String prod_pbrand   = pbrand.getText().toString();
+                String prod_category = category.getSelectedItem().toString().toLowerCase();
+                String prod_pname    = pname.getText().toString().toLowerCase();
+                String prod_pbrand   = pbrand.getText().toString().toLowerCase();
                 String prod_quantity = quantity.getText().toString();
                 String prod_desc     = pdesc.getText().toString();
                 String prod_modelno  = mno.getText().toString();
@@ -62,8 +62,10 @@ public class createNewItem extends AppCompatActivity
                     !prod_desc.isEmpty()     && !prod_modelno.isEmpty())
                 {
                     Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity);
-                    String key = databaseReference.child("Products").child(prod_category).child(prod_pbrand).push().getKey();
-                    databaseReference.child("Products").child(prod_category).child(prod_pbrand).child(key).setValue(item);
+                    String key = databaseReference.child("Product_info").child(prod_category).child(prod_pbrand).push().getKey();
+                    databaseReference.child("Product_info").child(prod_category).child(key).setValue(item);
+                    databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
+                    databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);
                     Toast.makeText(createNewItem.this, "Item added", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(createNewItem.this, inventorymanagerview.class));
                 }
