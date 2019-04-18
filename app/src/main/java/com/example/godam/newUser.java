@@ -2,7 +2,9 @@ package com.example.godam;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +14,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.godam.Utils.NewUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class newUser extends AppCompatActivity {
 
@@ -72,18 +81,46 @@ public class newUser extends AppCompatActivity {
                                                       cpassword.setError("password and confirm password do  not match");
                                                       flag = false;
                                                   }
-                                                  /*Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(uname);
+                                                  Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(uname);
                                                   if (matcher.find()) {}else {
                                                       //Toast.makeText(newUser.this, "password and confirm does not match", Toast.LENGTH_SHORT).show();
                                                       username.setError("Email id invalid");
                                                       flag = false;
                                                   }
-*/
+
                                                   if (flag) {
-                                                      NewUser user = new NewUser(fn, ln, user_type, uname, pass, no);
-                                                      databaseReference.child("user").child(user.getUname()).setValue(user);
-                                                      Toast.makeText(newUser.this, "User added", Toast.LENGTH_SHORT).show();
-                                                      startActivity(new Intent(newUser.this, supervisor.class));
+                                                      final NewUser newuser = new NewUser(fn, ln, user_type, uname, pass, no);
+
+                                                      //firebase authentication
+                                                      mAuth.createUserWithEmailAndPassword(uname, pass)
+                                                              .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                                  @Override
+                                                                  public void onComplete(@NonNull Task<AuthResult> task) {
+                                                                      if (task.isSuccessful()) {
+                                                                          // Sign in success, update UI with the signed-in user's information
+                                                                          Log.d(TAG, "createUserWithEmail:success");
+                                                                          FirebaseUser user = mAuth.getCurrentUser();
+                                                                          String temp_user=newuser.getUname().replaceAll("[.]","");
+                                                                          databaseReference.child("user_info").child(temp_user).setValue(user);
+                                                                          databaseReference.child(newuser.getType()).child(temp_user).setValue(newuser.getUname());
+                                                                          Toast.makeText(newUser.this, "User added", Toast.LENGTH_SHORT).show();
+                                                                          startActivity(new Intent(newUser.this, supervisor.class));
+                                                                          //updateUI(user);
+                                                                      } else {
+                                                                          // If sign in fails, display a message to the user.
+                                                                          Log.w(TAG, "createUserWithEmail:failure", task.getException());
+                                                                          Toast.makeText(newUser.this, "Authentication failed.",
+                                                                                  Toast.LENGTH_SHORT).show();
+                                                                          username.setError("Email already Exist");
+
+                                                                         // updateUI(null);
+                                                                      }
+
+                                                                      // ...
+                                                                  }
+                                                              });
+                                                      //*******************************
+
                                                   }
                                               }
                                               else {
@@ -111,26 +148,5 @@ public class newUser extends AppCompatActivity {
             }
             return true;
         }
-  /* private static boolean isEmailValid(String email)
-    {
-        String regExpn =
-                "^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@"
-                        +"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\."
-                        +"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\\.([0-1]?"
-                        +"[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
-                        +"([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
 
-        CharSequence inputStr = email;
-
-        Pattern pattern = Pattern.compile(regExpn,Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
-
-        if(matcher.matches())
-            return true;
-        else
-            return false;
-    }
-
-*/
     }
