@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.godam.Utils.NewUser;
+import com.google.android.gms.flags.impl.DataUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class newUser extends AppCompatActivity {
 
@@ -101,7 +103,7 @@ public class newUser extends AppCompatActivity {
                                                                           Log.d(TAG, "createUserWithEmail:success");
                                                                           FirebaseUser user = mAuth.getCurrentUser();
                                                                           String temp_user=newuser.getUname().replaceAll("[.]","");
-                                                                          databaseReference.child("user_info").child(temp_user).setValue(user);
+                                                                          databaseReference.child("user_info").child(temp_user).setValue(newuser);
                                                                           databaseReference.child(newuser.getType()).child(temp_user).setValue(newuser.getUname());
                                                                           Toast.makeText(newUser.this, "User added", Toast.LENGTH_SHORT).show();
                                                                           Intent intent = new Intent(newUser.this, supervisor.class);

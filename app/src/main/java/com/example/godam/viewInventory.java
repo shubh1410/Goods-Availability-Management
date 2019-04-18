@@ -101,7 +101,7 @@ public class viewInventory extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
                                                 item_List = new ArrayList<>();
-                                                mAdapter = new RecyclerAdaptor(item_List, 0);
+
                                                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                                 recyclerView.setLayoutManager(mLayoutManager);
                                                 recyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -119,8 +119,10 @@ public class viewInventory extends AppCompatActivity {
                                                 }
 
                                                 if (user_type.equals("Supervisor")) {
+                                                    mAdapter = new RecyclerAdaptor(item_List, 0);
                                                     recyclerView.setAdapter(mAdapter);
                                                 } else if (user_type.equals("InventoryManager")) {
+                                                    mAdapter = new RecyclerAdaptor(item_List, 0);
                                                     recyclerView.setAdapter(mAdapter);
                                                     recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
                                                         @Override
@@ -145,10 +147,14 @@ public class viewInventory extends AppCompatActivity {
 
                                                         }
                                                     }));
+                                                } else if (user_type.equals("update_quantity")) {
+                                                    mAdapter = new RecyclerAdaptor(item_List, 1);
+                                                    recyclerView.setAdapter(mAdapter);
+                                                } else if (user_type.equals("delete_product")) {
+                                                    mAdapter = new RecyclerAdaptor(item_List, 2);
+                                                    recyclerView.setAdapter(mAdapter);
                                                 }
-                                                {
 
-                                                }
 
                                             }
 
