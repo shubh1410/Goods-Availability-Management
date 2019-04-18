@@ -81,8 +81,8 @@ public class newUser extends AppCompatActivity {
                                                       cpassword.setError("password and confirm password do  not match");
                                                       flag = false;
                                                   }
-                                                  Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(uname);
-                                                  if (matcher.find()) {}else {
+
+                                                  if (!isEmailValid(uname)){
                                                       //Toast.makeText(newUser.this, "password and confirm does not match", Toast.LENGTH_SHORT).show();
                                                       username.setError("Email id invalid");
                                                       flag = false;
@@ -147,6 +147,19 @@ public class newUser extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
             }
             return true;
+        }
+        public boolean isEmailValid(String email){
+
+            Matcher matcher = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE).matcher(email);
+            if(matcher.find())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
     }
