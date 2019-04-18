@@ -30,7 +30,9 @@ public class supervisor extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(supervisor.this, newUser.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
                 Toast.makeText(supervisor.this, "Create New User", Toast.LENGTH_SHORT).show();
             }
 
@@ -43,9 +45,11 @@ public class supervisor extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(supervisor.this, viewInventory.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","Supervisor");
                 startActivity(intent);
                 Toast.makeText(supervisor.this, "View Inventory", Toast.LENGTH_SHORT).show();
+                finish();
             }
 
         });
@@ -63,7 +67,9 @@ public class supervisor extends AppCompatActivity
         {
 //            mAuth.signOut();
             Intent intent = new Intent(supervisor.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         }
         else {

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -74,7 +75,11 @@ public class updateItemInfo extends AppCompatActivity {
                     databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
                     databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);
                     Toast.makeText(updateItemInfo.this, "Item added", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(updateItemInfo.this, inventorymanagerview.class));
+                    Intent intent = new Intent(updateItemInfo.this, inventorymanagerview.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+                    //startActivity(new Intent(updateItemInfo.this, inventorymanagerview.class));
                 }
                 else
                 {
@@ -85,19 +90,23 @@ public class updateItemInfo extends AppCompatActivity {
 
 
     }
-
+    /*For Menu Button in Action Bar*/
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.others_menu,menu);
+        return true;
+    }
     /*For Menu Button in Action Bar*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.Exit)
+        if(item.getItemId() == R.id.logOut)
         {
 //            mAuth.signOut();
-            onBackPressed();
-//            Toast.makeText(this,"Exit Clicked",Toast.LENGTH_SHORT).show();
-        }
-        else if(item.getItemId() == R.id.aboutUs)
-        {
-            Toast.makeText(this,"About Us Clicked",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(updateItemInfo.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            finish();
+//            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         }
         else {
             return super.onOptionsItemSelected(item);

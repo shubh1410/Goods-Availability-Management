@@ -96,11 +96,13 @@ public class MainActivity extends AppCompatActivity
                                         if(dataSnapshot.child("Superviser").child(temp_email).exists())
                                         {
                                             Intent intent = new Intent(MainActivity.this, supervisor.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                             startActivity(intent);
                                         }
                                         else if(dataSnapshot.child("Inventory Manager").child(temp_email).exists())
                                         {
                                             Intent intent = new Intent(MainActivity.this, inventorymanagerview.class);
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                             startActivity(intent);
                                         }
 

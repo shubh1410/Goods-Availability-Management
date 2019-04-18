@@ -68,6 +68,11 @@ public class createNewItem extends AppCompatActivity
                     databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
                     databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);
                     Toast.makeText(createNewItem.this, "Item added", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(createNewItem.this, inventorymanagerview.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
                     startActivity(new Intent(createNewItem.this, inventorymanagerview.class));
                 }
                 else
@@ -91,7 +96,9 @@ public class createNewItem extends AppCompatActivity
         if(item.getItemId() == R.id.logOut)
         {
             Intent intent = new Intent(createNewItem.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         }
         else {

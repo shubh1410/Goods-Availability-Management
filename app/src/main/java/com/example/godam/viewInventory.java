@@ -132,10 +132,12 @@ public class viewInventory extends AppCompatActivity {
 
 
                                                             Intent intent = new Intent(viewInventory.this, updateItemInfo.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
                                                             //intent.putExtras(temp);
                                                             startActivity(intent);
+                                                            finish();
                                                         }
 
                                                         @Override
@@ -200,7 +202,9 @@ public class viewInventory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logOut) {
             Intent intent = new Intent(viewInventory.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         } else {
             return super.onOptionsItemSelected(item);
