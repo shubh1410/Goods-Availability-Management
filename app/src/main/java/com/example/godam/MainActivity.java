@@ -56,17 +56,7 @@ public class MainActivity extends AppCompatActivity
         database=FirebaseDatabase.getInstance();
         databaseReference=database.getReference();
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -98,9 +88,31 @@ public class MainActivity extends AppCompatActivity
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "Signed in",Toast.LENGTH_SHORT).show();
-//                                Intent intent = new Intent(MainActivity.this, supervisor.class);
-                                Intent intent = new Intent(MainActivity.this, newUser.class);
-                                startActivity(intent);
+                                //switching to correct screen
+                                databaseReference.addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        String temp_email=email.replaceAll("[.]","");
+                                        if(dataSnapshot.child("Superviser").child(temp_email).exists())
+                                        {
+                                            Intent intent = new Intent(MainActivity.this, supervisor.class);
+                                            startActivity(intent);
+                                        }
+                                        if(dataSnapshot.child("Inventory Manager").child(temp_email).exists())
+                                        {
+                                            Intent intent = new Intent(MainActivity.this, inventorymanagerview.class);
+                                            startActivity(intent);
+                                        }
+
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
+                                //**********************************
+
                             }
                             else{
                                 Toast.makeText(MainActivity.this, "Wrong Credentials",Toast.LENGTH_SHORT).show();
