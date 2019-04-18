@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gradient"
-    tools:context=".supervisor">
+    tools:context=".newUser">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".supervisor">
+        tools:context=".newUser">
 
         <EditText
             android:id="@+id/username"
