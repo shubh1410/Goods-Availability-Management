@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
                                             Intent intent = new Intent(MainActivity.this, supervisor.class);
                                             startActivity(intent);
                                         }
-                                        if(dataSnapshot.child("Inventory Manager").child(temp_email).exists())
+                                        else if(dataSnapshot.child("Inventory Manager").child(temp_email).exists())
                                         {
                                             Intent intent = new Intent(MainActivity.this, inventorymanagerview.class);
                                             startActivity(intent);

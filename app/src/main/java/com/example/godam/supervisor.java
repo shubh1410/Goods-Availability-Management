@@ -13,7 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class supervisor extends AppCompatActivity
 {
-    Button cuser;
+    Button cuser,view_inventory_button;
     private FirebaseAuth mAuth;
 
     @Override
@@ -22,7 +22,7 @@ public class supervisor extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_supervisor);
         cuser = (Button)findViewById(R.id.newuser);
-
+        view_inventory_button= (Button)findViewById(R.id.sinventory);
         cuser.setOnClickListener(new View.OnClickListener()
         {
 
@@ -36,6 +36,18 @@ public class supervisor extends AppCompatActivity
 
         });
 
+        view_inventory_button.setOnClickListener(new View.OnClickListener()
+        {
+
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(supervisor.this, viewInventory.class);
+                startActivity(intent);
+                Toast.makeText(supervisor.this, "View Inventory", Toast.LENGTH_SHORT).show();
+            }
+
+        });
     }
     /*For Menu Button in Action Bar*/
     @Override
