@@ -3,6 +3,8 @@ package com.example.godam;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.example.godam.Utils.Item_new;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +25,12 @@ import java.util.List;
 public class viewInventory extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private String cat_selected="";
+    private String brand_selected="";
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
+    private static final String TAG = "viewInventory";
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -42,8 +51,9 @@ public class viewInventory extends AppCompatActivity {
                 // Is better to use a List, because you don't know the size
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
-                pBrandSpinner.setEnabled(false);
+
                 List<String> categories = new ArrayList<String>();
+                categories.add("none");
                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
                 {
                     String temp = areaSnapshot.getKey();
@@ -59,13 +69,14 @@ public class viewInventory extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
                     {
                         pBrandSpinner.setEnabled(true);
-                        String user_type = pCat.getSelectedItem().toString();
-                        databaseReference.child("Product_brand").child(user_type).addValueEventListener(new ValueEventListener()
+                        cat_selected = pCat.getSelectedItem().toString();
+                        databaseReference.child("Product_brand").child(cat_selected).addValueEventListener(new ValueEventListener()
                         {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot)
                             {
                                 List<String> pBrandArea = new ArrayList<String>();
+                                pBrandArea.add("none");
                                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
                                 {
                                     String temp = areaSnapshot.getKey();
@@ -75,6 +86,56 @@ public class viewInventory extends AppCompatActivity {
                                 ArrayAdapter<String> pBrandAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, pBrandArea);
                                 pBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                                 pBrandSpinner.setAdapter(pBrandAdapter);
+
+                                //for the recyclerview
+
+
+                                pBrandSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
+                                {
+                                    @Override
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
+                                    {
+
+                                        brand_selected = pBrandSpinner.getSelectedItem().toString();
+                                        databaseReference.child("Product_info").child(cat_selected).addValueEventListener(new ValueEventListener()
+                                        {
+                                            @Override
+                                            public void onDataChange(DataSnapshot dataSnapshot)
+                                            {
+                                                List<String> pBrandArea = new ArrayList<String>();
+                                                pBrandArea.add("none");
+                                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
+                                                {
+
+                                                    Item_new temp_item=areaSnapshot.getValue(Item_new.class);
+                                                    //Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
+                                                    if(temp_item.getProduct_brand().equals(brand_selected))
+                                                    {
+                                                        Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
+                                                    }
+
+                                                }
+
+                                               /* ArrayAdapter<String> pBrandAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, pBrandArea);
+                                                pBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                                                pBrandSpinner.setAdapter(pBrandAdapter);*/
+                                            }
+
+                                            @Override
+                                            public void onCancelled(DatabaseError databaseError) {
+
+                                            }
+                                        });
+                                    }
+
+                                    @Override
+                                    public void onNothingSelected(AdapterView<?> parent) {
+                                    }
+                                });
+
+
+
+                                //end for recycler view
                             }
 
                             @Override
@@ -88,6 +149,8 @@ public class viewInventory extends AppCompatActivity {
                     public void onNothingSelected(AdapterView<?> parent) {
                     }
                 });
+
+
             }
 
             @Override
