@@ -3,6 +3,8 @@ package com.example.godam;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -28,8 +30,8 @@ public class viewInventory extends AppCompatActivity {
     private String cat_selected="";
     private String brand_selected="";
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerAdaptor mAdapter;
+    private List<Item_new> item_List = new ArrayList<>();
     private static final String TAG = "viewInventory";
 
     @Override
@@ -43,6 +45,10 @@ public class viewInventory extends AppCompatActivity {
 
         final Spinner pCat = (Spinner) findViewById(R.id.pcategory);
         final Spinner pBrandSpinner = (Spinner) findViewById(R.id.pBrand);
+        recyclerView = (RecyclerView) findViewById(R.id.displayList);
+
+
+
 
         databaseReference.child("Product_categories").addValueEventListener(new ValueEventListener() {
             @Override
@@ -104,6 +110,12 @@ public class viewInventory extends AppCompatActivity {
                                             {
                                                 List<String> pBrandArea = new ArrayList<String>();
                                                 pBrandArea.add("none");
+
+                                                mAdapter = new RecyclerAdaptor(item_List);
+                                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                                recyclerView.setLayoutManager(mLayoutManager);
+                                                recyclerView.setItemAnimator(new DefaultItemAnimator());
+
                                                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
                                                 {
 
@@ -111,10 +123,13 @@ public class viewInventory extends AppCompatActivity {
                                                     //Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
                                                     if(temp_item.getProduct_brand().equals(brand_selected))
                                                     {
+
+                                                        item_List.add(temp_item);
                                                         Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
                                                     }
 
                                                 }
+                                                recyclerView.setAdapter(mAdapter);
 
                                                /* ArrayAdapter<String> pBrandAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, pBrandArea);
                                                 pBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
