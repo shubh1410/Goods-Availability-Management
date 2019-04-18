@@ -25,7 +25,6 @@ public class MainActivityTest {
 
 
     private MainActivity mActivity = null;
-    private supervisor sActivity = null;
 
     private String username_tobe_typed="a@gmail.com";
     private String correct_password ="aaaaaa";
@@ -33,7 +32,7 @@ public class MainActivityTest {
 
     @Before
     public void setUp() {
-       // mActivity = mActivityTestRule.getActivity();
+       mActivity = mActivityTestRule.getActivity();
     }
 
     @Test
