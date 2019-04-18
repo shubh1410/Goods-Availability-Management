@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -31,7 +32,6 @@ public class viewInventory extends AppCompatActivity {
     private String brand_selected="";
     private RecyclerView recyclerView;
     private RecyclerAdaptor mAdapter;
-    private List<Item_new> item_List = new ArrayList<>();
     private static final String TAG = "viewInventory";
 
     @Override
@@ -46,6 +46,7 @@ public class viewInventory extends AppCompatActivity {
         final Spinner pCat = (Spinner) findViewById(R.id.pcategory);
         final Spinner pBrandSpinner = (Spinner) findViewById(R.id.pBrand);
         recyclerView = (RecyclerView) findViewById(R.id.displayList);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
 
 
@@ -108,9 +109,7 @@ public class viewInventory extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot)
                                             {
-                                                List<String> pBrandArea = new ArrayList<String>();
-                                                pBrandArea.add("none");
-
+                                                List<Item_new> item_List = new ArrayList<>();
                                                 mAdapter = new RecyclerAdaptor(item_List);
                                                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                                 recyclerView.setLayoutManager(mLayoutManager);
@@ -129,11 +128,9 @@ public class viewInventory extends AppCompatActivity {
                                                     }
 
                                                 }
+
                                                 recyclerView.setAdapter(mAdapter);
 
-                                               /* ArrayAdapter<String> pBrandAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, pBrandArea);
-                                                pBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                                pBrandSpinner.setAdapter(pBrandAdapter);*/
                                             }
 
                                             @Override
