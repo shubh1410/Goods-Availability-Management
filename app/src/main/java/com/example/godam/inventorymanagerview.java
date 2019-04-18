@@ -11,7 +11,7 @@ import android.view.Menu;
 
 public class inventorymanagerview extends AppCompatActivity
 {
-    Button nitem;
+    Button nitem,view_inventory_button;
 
 
     @Override
@@ -19,6 +19,7 @@ public class inventorymanagerview extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_inventorymanagerview);
         nitem = (Button) findViewById(R.id.createNewItem);
+        view_inventory_button=(Button) findViewById(R.id.viewInventory);
 
         nitem.setOnClickListener(new View.OnClickListener() {
 
@@ -27,6 +28,17 @@ public class inventorymanagerview extends AppCompatActivity
                 Intent intent = new Intent(inventorymanagerview.this, createNewItem.class);
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+        view_inventory_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
+                startActivity(intent);
+                Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
             }
 
         });
