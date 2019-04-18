@@ -61,8 +61,9 @@ public class createNewItem extends AppCompatActivity
                     !prod_pbrand.isEmpty()   && !prod_quantity.isEmpty() &&
                     !prod_desc.isEmpty()     && !prod_modelno.isEmpty())
                 {
-                    Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity);
                     String key = databaseReference.child("Product_info").child(prod_category).child(prod_pbrand).push().getKey();
+                    Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity,key);
+
                     databaseReference.child("Product_info").child(prod_category).child(key).setValue(item);
                     databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
                     databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);

@@ -37,6 +37,7 @@ public class inventorymanagerview extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
+                intent.putExtra("user_type","InventoryManager");
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
             }

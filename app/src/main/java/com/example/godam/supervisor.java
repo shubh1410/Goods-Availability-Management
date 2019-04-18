@@ -43,6 +43,7 @@ public class supervisor extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(supervisor.this, viewInventory.class);
+                intent.putExtra("user_type","Supervisor");
                 startActivity(intent);
                 Toast.makeText(supervisor.this, "View Inventory", Toast.LENGTH_SHORT).show();
             }

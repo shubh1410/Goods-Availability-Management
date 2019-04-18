@@ -15,7 +15,7 @@ import java.util.List;
 public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyViewHolder> {
 
     private List<Item_new> item_List;
-
+    private int viewType;
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public TextView product_name, description, quantity;
 
@@ -27,16 +27,22 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
         }
     }
 
-    public RecyclerAdaptor(List<Item_new> item_List) {
+    public RecyclerAdaptor(List<Item_new> item_List,int viewType) {
         this.item_List = item_List;
+        this.viewType=viewType;
     }
 
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        View itemView = LayoutInflater.from(viewGroup.getContext())
+        View itemView= LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.layout_recycler_view, viewGroup, false);
+        switch (viewType){
+            case 0: itemView= LayoutInflater.from(viewGroup.getContext())
+                    .inflate(R.layout.layout_recycler_view, viewGroup, false);
 
+
+        }
         return new MyViewHolder(itemView);
     }
 
