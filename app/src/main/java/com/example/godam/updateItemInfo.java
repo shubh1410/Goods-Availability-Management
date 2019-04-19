@@ -78,7 +78,7 @@ public class updateItemInfo extends AppCompatActivity {
                     Intent intent = new Intent(updateItemInfo.this, inventorymanagerview.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    finish();
+                    //finish();
                     //startActivity(new Intent(updateItemInfo.this, inventorymanagerview.class));
                 }
                 else

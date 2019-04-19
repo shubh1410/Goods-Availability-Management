@@ -40,7 +40,7 @@ public class inventorymanagerview extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","InventoryManager");
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
@@ -53,7 +53,7 @@ public class inventorymanagerview extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","update_quantity");
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();

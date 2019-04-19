@@ -3,6 +3,7 @@ package com.example.godam;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,14 +26,14 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
+        View m_view;
         public TextView product_name, description, quantity;
         public Button plus, minus, delete;
         public Item_new temp_item;
 
         public MyViewHolder(View view){
             super(view);
-
+            m_view=view;
 
             product_name = (TextView) view.findViewById(R.id.product_name);
             description = (TextView) view.findViewById(R.id.description);
@@ -50,28 +51,21 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
 
             if (v.getId() == plus.getId()){
 
-                /*FirebaseDatabase database;
-                DatabaseReference databaseReference;
-                database = FirebaseDatabase.getInstance();
-                databaseReference = database.getReference();
-                databaseReference.keepSynced(true);
-                int test_quantity = Integer.parseInt(temp_item.getProduct_quantity());
-                test_quantity = test_quantity + 1;
-                temp_item.setProduct_quantity(Integer.toString(test_quantity));
-                databaseReference.child("Product_info").child(temp_item.getProduct_category()).child(temp_item.getFb_key()).setValue(temp_item);
-                Log.d(TAG, "onClick: Plus" + temp_item.toString());
-*/
-                int test_quantity = Integer.parseInt(temp_item.getProduct_quantity());
-                test_quantity = test_quantity + 1;
-                temp_item.setProduct_quantity(Integer.toString(test_quantity));
-                quantity.setText(Integer.toString(test_quantity));
-
                 FirebaseDatabase database;
                 DatabaseReference databaseReference;
                 database = FirebaseDatabase.getInstance();
                 databaseReference = database.getReference();
-                databaseReference.keepSynced(true);
-                //databaseReference.child("Product_info").child(temp_item.getProduct_category()).child(temp_item.getFb_key()).setValue(temp_item);
+               // databaseReference.keepSynced(true);
+                int test_quantity = Integer.parseInt(temp_item.getProduct_quantity());
+                test_quantity = test_quantity + 1;
+                temp_item.setProduct_quantity(Integer.toString(test_quantity));
+                databaseReference.child("Product_info").child(temp_item.getProduct_category()).removeValue();
+                databaseReference.child("Product_info").child(temp_item.getProduct_category()).child(temp_item.getFb_key()).setValue(temp_item);
+                Log.d(TAG, "onClick: Plus" + temp_item.toString());
+                //View tempview = (View) plus.getTag(R.integer.btn_plus_view);
+                // RecyclerAdaptor.this.notifyItemChanged();
+
+
 
             } else if(v.getId() == minus.getId()) {
 
@@ -152,7 +146,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder myViewHolder, int position) {
+    public void onBindViewHolder(final MyViewHolder myViewHolder, final int position) {
         myViewHolder.temp_item = item_List.get(position);
 
         switch (viewType) {
@@ -166,10 +160,39 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
                 myViewHolder.product_name.setText(myViewHolder.temp_item.getProduct_name());
                 myViewHolder.description.setText(myViewHolder.temp_item.getProduct_desc());
                 myViewHolder.quantity.setText(myViewHolder.temp_item.getProduct_quantity());
+                //final TextView quan = myViewHolder.quantity;
                 myViewHolder.plus.setTag(R.integer.btn_plus_view, myViewHolder);
                 myViewHolder.minus.setTag(R.integer.btn_minus_view, myViewHolder);
-                myViewHolder.plus.setOnClickListener(myViewHolder);
+                //myViewHolder.plus.setOnClickListener(myViewHolder);
                 myViewHolder.minus.setOnClickListener(myViewHolder);
+
+                myViewHolder.m_view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                    }
+                });
+
+                myViewHolder.plus.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FirebaseDatabase database;
+                        DatabaseReference databaseReference;
+                        database = FirebaseDatabase.getInstance();
+                        databaseReference = database.getReference();
+                        // databaseReference.keepSynced(true);
+                        int test_quantity = Integer.parseInt(myViewHolder.temp_item.getProduct_quantity());
+                        test_quantity = test_quantity + 1;
+                        myViewHolder.temp_item.setProduct_quantity(Integer.toString(test_quantity));
+                        //databaseReference.child("Product_info").child(myViewHolder.temp_item.getProduct_category()).removeValue();
+                        databaseReference.child("Product_info").child(myViewHolder.temp_item.getProduct_category()).child(myViewHolder.temp_item.getFb_key()).setValue(myViewHolder.temp_item);
+                        Log.d(TAG, "onClick: Plus" + myViewHolder.temp_item.toString());
+                        //View tempview = (View) plus.getTag(R.integer.btn_plus_view);
+                        RecyclerAdaptor.this.notifyItemChanged(position);
+                    }
+                });
+
+
                 break;
 
             case 3:
@@ -199,8 +222,8 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
         return item_List.size();
     }
 
-    @Override
-    public int getItemViewType(int position) {
+
+    /*public int getItemViewType(int position) {
         //return super.getItemViewType(position);
  //       Log.w("dont know", item_List.get(position).getClass().toString());
 //        switch (item_List.get(position).getClass().toString()) {
@@ -218,5 +241,5 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
         else
             return 2;
     }
-
+*/
 }

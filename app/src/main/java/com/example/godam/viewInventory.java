@@ -52,9 +52,6 @@ public class viewInventory extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.displayList);
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-        item_List = new ArrayList<>();
-        mAdapter = new RecyclerAdaptor(item_List, 2);
-        recyclerView.setAdapter(mAdapter);
 
         databaseReference.child("Product_categories").addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,11 +100,11 @@ public class viewInventory extends AppCompatActivity {
                                         databaseReference.child("Product_info").child(cat_selected).addValueEventListener(new ValueEventListener() {
                                             @Override
                                             public void onDataChange(DataSnapshot dataSnapshot) {
-                                                //item_List = new ArrayList<>();
+                                                item_List = new ArrayList<>();
 
-                                               /* RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                                                 recyclerView.setLayoutManager(mLayoutManager);
-                                                recyclerView.setItemAnimator(new DefaultItemAnimator());*/
+                                                recyclerView.setItemAnimator(new DefaultItemAnimator());
 
                                                 for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
 
@@ -116,20 +113,17 @@ public class viewInventory extends AppCompatActivity {
                                                     if (temp_item.getProduct_brand().equals(brand_selected)) {
 
                                                         item_List.add(temp_item);
-                                                        mAdapter.notifyItemInserted(item_List.size());
                                                         Log.d(TAG, "onDataChange: recyclerview data " + temp_item.toString());
                                                     }
 
                                                 }
 
                                                 if (user_type.equals("Supervisor")) {
-                                                   // mAdapter = new RecyclerAdaptor(item_List, 1);
-                                                    //mAdapter.getItemViewType(1);
-                                                    //recyclerView.setAdapter(mAdapter);
+                                                    mAdapter = new RecyclerAdaptor(item_List, 1);
+                                                    recyclerView.setAdapter(mAdapter);
                                                 } else if (user_type.equals("InventoryManager")) {
-                                                    //mAdapter = new RecyclerAdaptor(item_List, 1);
-                                                   // mAdapter.getItemViewType(1);
-                                                    //recyclerView.setAdapter(mAdapter);
+                                                    mAdapter = new RecyclerAdaptor(item_List, 1);
+                                                    recyclerView.setAdapter(mAdapter);
                                                     recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
                                                         @Override
                                                         public void onClick(View view, int position) {
@@ -154,14 +148,11 @@ public class viewInventory extends AppCompatActivity {
                                                         }
                                                     }));
                                                 } else if (user_type.equals("update_quantity")) {
-                                                    //mAdapter = new RecyclerAdaptor(item_List, 2);
-                                                    //mAdapter.getItemViewType(2);
-                                                   // recyclerView.setAdapter(mAdapter);
+                                                    mAdapter = new RecyclerAdaptor(item_List, 2);
+                                                    recyclerView.setAdapter(mAdapter);
                                                 } else if (user_type.equals("delete_product")) {
-                                                   // mAdapter = new RecyclerAdaptor(item_List, 3);
-                                                   // mAdapter.getItemViewType(3);
-                                                   // mAdapter.setViewType(2);
-                                                    //recyclerView.setAdapter(mAdapter);
+                                                    mAdapter = new RecyclerAdaptor(item_List, 3);
+                                                    recyclerView.setAdapter(mAdapter);
                                                 }
 
 
