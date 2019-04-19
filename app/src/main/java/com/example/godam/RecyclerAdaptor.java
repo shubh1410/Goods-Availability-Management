@@ -50,7 +50,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
 
             if (v.getId() == plus.getId()){
 
-                FirebaseDatabase database;
+                /*FirebaseDatabase database;
                 DatabaseReference databaseReference;
                 database = FirebaseDatabase.getInstance();
                 databaseReference = database.getReference();
@@ -60,6 +60,18 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
                 temp_item.setProduct_quantity(Integer.toString(test_quantity));
                 databaseReference.child("Product_info").child(temp_item.getProduct_category()).child(temp_item.getFb_key()).setValue(temp_item);
                 Log.d(TAG, "onClick: Plus" + temp_item.toString());
+*/
+                int test_quantity = Integer.parseInt(temp_item.getProduct_quantity());
+                test_quantity = test_quantity + 1;
+                temp_item.setProduct_quantity(Integer.toString(test_quantity));
+                quantity.setText(Integer.toString(test_quantity));
+
+                FirebaseDatabase database;
+                DatabaseReference databaseReference;
+                database = FirebaseDatabase.getInstance();
+                databaseReference = database.getReference();
+                databaseReference.keepSynced(true);
+                //databaseReference.child("Product_info").child(temp_item.getProduct_category()).child(temp_item.getFb_key()).setValue(temp_item);
 
             } else if(v.getId() == minus.getId()) {
 
@@ -116,19 +128,19 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
         View itemView = LayoutInflater.from(viewGroup.getContext())
                 .inflate(R.layout.layout_recycler_view, viewGroup, false);
         switch (viewType) {
-            case 0:
+            case 1:
                 itemView = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.layout_recycler_view, viewGroup, false);
                 Log.d(TAG, "onCreateViewHolder: layout_recycler_view");
                 break;
 
-            case 1:
+            case 2:
                 itemView = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.layout_recycler_upquantity, viewGroup, false);
                 Log.d(TAG, "onCreateViewHolder: layout_recycler_upquantity");
                 break;
 
-            case 2:
+            case 3:
                 itemView = LayoutInflater.from(viewGroup.getContext())
                         .inflate(R.layout.layout_recycler_delete, viewGroup, false);
                 Log.d(TAG, "onCreateViewHolder: layout_recycler_delete");
@@ -142,14 +154,15 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder myViewHolder, int position) {
         myViewHolder.temp_item = item_List.get(position);
+
         switch (viewType) {
-            case 0:
+            case 1:
                 myViewHolder.product_name.setText(myViewHolder.temp_item.getProduct_name());
                 myViewHolder.description.setText(myViewHolder.temp_item.getProduct_desc());
                 myViewHolder.quantity.setText(myViewHolder.temp_item.getProduct_quantity());
 
                 break;
-            case 1:
+            case 2:
                 myViewHolder.product_name.setText(myViewHolder.temp_item.getProduct_name());
                 myViewHolder.description.setText(myViewHolder.temp_item.getProduct_desc());
                 myViewHolder.quantity.setText(myViewHolder.temp_item.getProduct_quantity());
@@ -159,7 +172,7 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
                 myViewHolder.minus.setOnClickListener(myViewHolder);
                 break;
 
-            case 2:
+            case 3:
                 myViewHolder.product_name.setText(myViewHolder.temp_item.getProduct_name());
                 myViewHolder.description.setText(myViewHolder.temp_item.getProduct_desc());
                 myViewHolder.quantity.setText(myViewHolder.temp_item.getProduct_quantity());
@@ -168,6 +181,16 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
                 break;
         }
 
+//                myViewHolder.product_name.setText(myViewHolder.temp_item.getProduct_name());
+//                myViewHolder.description.setText(myViewHolder.temp_item.getProduct_desc());
+//                myViewHolder.quantity.setText(myViewHolder.temp_item.getProduct_quantity());
+//                myViewHolder.plus.setTag(R.integer.btn_plus_view, myViewHolder);
+//                myViewHolder.minus.setTag(R.integer.btn_minus_view, myViewHolder);
+//                myViewHolder.plus.setOnClickListener(myViewHolder);
+//                myViewHolder.minus.setOnClickListener(myViewHolder);
+//                myViewHolder.delete.setTag(R.integer.btn_delete_view, myViewHolder);
+//                myViewHolder.delete.setOnClickListener(myViewHolder);
+
 
     }
 
@@ -175,4 +198,25 @@ public class RecyclerAdaptor extends RecyclerView.Adapter<RecyclerAdaptor.MyView
     public int getItemCount() {
         return item_List.size();
     }
+
+    @Override
+    public int getItemViewType(int position) {
+        //return super.getItemViewType(position);
+ //       Log.w("dont know", item_List.get(position).getClass().toString());
+//        switch (item_List.get(position).getClass().toString()) {
+//            case 0:
+//                return Model.TEXT_TYPE;
+//            case 1:
+//                return Model.IMAGE_TYPE;
+//            case 2:
+//                return Model.AUDIO_TYPE;
+//            default:
+//                return -1;
+//        }
+        if(position!= 0)
+            return position;
+        else
+            return 2;
+    }
+
 }
