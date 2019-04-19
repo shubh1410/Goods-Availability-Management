@@ -61,12 +61,18 @@ public class createNewItem extends AppCompatActivity
                     !prod_pbrand.isEmpty()   && !prod_quantity.isEmpty() &&
                     !prod_desc.isEmpty()     && !prod_modelno.isEmpty())
                 {
-                    Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity);
                     String key = databaseReference.child("Product_info").child(prod_category).child(prod_pbrand).push().getKey();
+                    Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity,key);
+
                     databaseReference.child("Product_info").child(prod_category).child(key).setValue(item);
                     databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
                     databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);
                     Toast.makeText(createNewItem.this, "Item added", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(createNewItem.this, inventorymanagerview.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
                     startActivity(new Intent(createNewItem.this, inventorymanagerview.class));
                 }
                 else
@@ -90,7 +96,9 @@ public class createNewItem extends AppCompatActivity
         if(item.getItemId() == R.id.logOut)
         {
             Intent intent = new Intent(createNewItem.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         }
         else {

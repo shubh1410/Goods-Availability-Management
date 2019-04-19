@@ -3,6 +3,9 @@ package com.example.godam;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.godam.Utils.Item_new;
 import com.google.firebase.database.DataSnapshot;
@@ -25,37 +29,43 @@ import java.util.List;
 public class viewInventory extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private String cat_selected="";
-    private String brand_selected="";
+    private String cat_selected = "";
+    private String brand_selected = "";
     private RecyclerView recyclerView;
-    private RecyclerView.Adapter mAdapter;
-    private RecyclerView.LayoutManager layoutManager;
+    private RecyclerAdaptor mAdapter;
     private static final String TAG = "viewInventory";
+    private List<Item_new> item_List;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_inventory);
+
+        Intent intent = getIntent();
+        final String user_type = intent.getStringExtra("user_type");
 
         database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference();
 
         final Spinner pCat = (Spinner) findViewById(R.id.pcategory);
         final Spinner pBrandSpinner = (Spinner) findViewById(R.id.pBrand);
+        recyclerView = (RecyclerView) findViewById(R.id.displayList);
+        recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
+
+        item_List = new ArrayList<>();
+        mAdapter = new RecyclerAdaptor(item_List, 2);
+        recyclerView.setAdapter(mAdapter);
 
         databaseReference.child("Product_categories").addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 // Is better to use a List, because you don't know the size
                 // of the iterator returned by dataSnapshot.getChildren() to
                 // initialize the array
 
                 List<String> categories = new ArrayList<String>();
                 categories.add("none");
-                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
-                {
+                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                     String temp = areaSnapshot.getKey();
                     categories.add(temp);
                 }
@@ -63,22 +73,17 @@ public class viewInventory extends AppCompatActivity {
                 ArrayAdapter<String> pCatAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, categories);
                 pCatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 pCat.setAdapter(pCatAdapter);
-                pCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                {
+                pCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
-                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                    {
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                         pBrandSpinner.setEnabled(true);
                         cat_selected = pCat.getSelectedItem().toString();
-                        databaseReference.child("Product_brand").child(cat_selected).addValueEventListener(new ValueEventListener()
-                        {
+                        databaseReference.child("Product_brand").child(cat_selected).addValueEventListener(new ValueEventListener() {
                             @Override
-                            public void onDataChange(DataSnapshot dataSnapshot)
-                            {
+                            public void onDataChange(DataSnapshot dataSnapshot) {
                                 List<String> pBrandArea = new ArrayList<String>();
                                 pBrandArea.add("none");
-                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
-                                {
+                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
                                     String temp = areaSnapshot.getKey();
                                     pBrandArea.add(temp);
                                 }
@@ -90,35 +95,76 @@ public class viewInventory extends AppCompatActivity {
                                 //for the recyclerview
 
 
-                                pBrandSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-                                {
+                                pBrandSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                     @Override
-                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id)
-                                    {
+                                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                                         brand_selected = pBrandSpinner.getSelectedItem().toString();
-                                        databaseReference.child("Product_info").child(cat_selected).addValueEventListener(new ValueEventListener()
-                                        {
+                                        databaseReference.child("Product_info").child(cat_selected).addValueEventListener(new ValueEventListener() {
                                             @Override
-                                            public void onDataChange(DataSnapshot dataSnapshot)
-                                            {
-                                                List<String> pBrandArea = new ArrayList<String>();
-                                                pBrandArea.add("none");
-                                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren())
-                                                {
+                                            public void onDataChange(DataSnapshot dataSnapshot) {
+                                                //item_List = new ArrayList<>();
 
-                                                    Item_new temp_item=areaSnapshot.getValue(Item_new.class);
+                                               /* RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                                                recyclerView.setLayoutManager(mLayoutManager);
+                                                recyclerView.setItemAnimator(new DefaultItemAnimator());*/
+
+                                                for (DataSnapshot areaSnapshot : dataSnapshot.getChildren()) {
+
+                                                    Item_new temp_item = areaSnapshot.getValue(Item_new.class);
                                                     //Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
-                                                    if(temp_item.getProduct_brand().equals(brand_selected))
-                                                    {
-                                                        Log.d(TAG, "onDataChange: recyclerview data "+temp_item.toString());
+                                                    if (temp_item.getProduct_brand().equals(brand_selected)) {
+
+                                                        item_List.add(temp_item);
+                                                        mAdapter.notifyItemInserted(item_List.size());
+                                                        Log.d(TAG, "onDataChange: recyclerview data " + temp_item.toString());
                                                     }
 
                                                 }
 
-                                               /* ArrayAdapter<String> pBrandAdapter = new ArrayAdapter<String>(viewInventory.this, android.R.layout.simple_spinner_item, pBrandArea);
-                                                pBrandAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                                pBrandSpinner.setAdapter(pBrandAdapter);*/
+                                                if (user_type.equals("Supervisor")) {
+                                                   // mAdapter = new RecyclerAdaptor(item_List, 1);
+                                                    //mAdapter.getItemViewType(1);
+                                                    //recyclerView.setAdapter(mAdapter);
+                                                } else if (user_type.equals("InventoryManager")) {
+                                                    //mAdapter = new RecyclerAdaptor(item_List, 1);
+                                                   // mAdapter.getItemViewType(1);
+                                                    //recyclerView.setAdapter(mAdapter);
+                                                    recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+                                                        @Override
+                                                        public void onClick(View view, int position) {
+                                                            Item_new temp = item_List.get(position);
+                                                            //Toast.makeText(getApplicationContext(), temp.toString() + " is selected!", Toast.LENGTH_SHORT).show();
+                                                            Log.d(TAG, "onClick: view temp data " + temp.toString());
+                                                            Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
+
+
+                                                            Intent intent = new Intent(viewInventory.this, updateItemInfo.class);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            intent.putExtra("parcel_data", temp);
+
+                                                            //intent.putExtras(temp);
+                                                            startActivity(intent);
+                                                            finish();
+                                                        }
+
+                                                        @Override
+                                                        public void onLongClick(View view, int position) {
+
+                                                        }
+                                                    }));
+                                                } else if (user_type.equals("update_quantity")) {
+                                                    //mAdapter = new RecyclerAdaptor(item_List, 2);
+                                                    //mAdapter.getItemViewType(2);
+                                                   // recyclerView.setAdapter(mAdapter);
+                                                } else if (user_type.equals("delete_product")) {
+                                                   // mAdapter = new RecyclerAdaptor(item_List, 3);
+                                                   // mAdapter.getItemViewType(3);
+                                                   // mAdapter.setViewType(2);
+                                                    //recyclerView.setAdapter(mAdapter);
+                                                }
+
+
                                             }
 
                                             @Override
@@ -132,7 +178,6 @@ public class viewInventory extends AppCompatActivity {
                                     public void onNothingSelected(AdapterView<?> parent) {
                                     }
                                 });
-
 
 
                                 //end for recycler view
@@ -172,7 +217,9 @@ public class viewInventory extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logOut) {
             Intent intent = new Intent(viewInventory.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         } else {
             return super.onOptionsItemSelected(item);

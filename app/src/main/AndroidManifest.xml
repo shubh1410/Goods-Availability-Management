@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewInventory"></activity>
+        <activity android:name=".updateItemInfo"></activity>
+        <activity android:name=".viewInventory" />
         <activity
             android:name=".createNewItem"
             android:windowSoftInputMode="adjustPan" />

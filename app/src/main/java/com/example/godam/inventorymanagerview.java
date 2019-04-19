@@ -11,7 +11,7 @@ import android.view.Menu;
 
 public class inventorymanagerview extends AppCompatActivity
 {
-    Button nitem,view_inventory_button;
+    Button nitem,view_inventory_button,update_quantity_button,delete_product_button;
 
 
     @Override
@@ -20,12 +20,15 @@ public class inventorymanagerview extends AppCompatActivity
         setContentView(R.layout.activity_inventorymanagerview);
         nitem = (Button) findViewById(R.id.createNewItem);
         view_inventory_button=(Button) findViewById(R.id.viewInventory);
+        update_quantity_button=(Button) findViewById(R.id.update_quantity_button);
+        delete_product_button=(Button) findViewById(R.id.delete_product_button);
 
         nitem.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(inventorymanagerview.this, createNewItem.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
             }
@@ -37,8 +40,36 @@ public class inventorymanagerview extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("user_type","InventoryManager");
                 startActivity(intent);
                 Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+        update_quantity_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("user_type","update_quantity");
+                startActivity(intent);
+                Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+        delete_product_button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(inventorymanagerview.this, viewInventory.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("user_type","delete_product");
+                startActivity(intent);
+                Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -56,7 +87,9 @@ public class inventorymanagerview extends AppCompatActivity
         if(item.getItemId() == R.id.logOut)
         {
             Intent intent = new Intent(inventorymanagerview.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
+            finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
         }
         else {

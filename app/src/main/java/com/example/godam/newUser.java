@@ -14,6 +14,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.godam.Utils.NewUser;
+import com.google.android.gms.flags.impl.DataUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -24,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 
 public class newUser extends AppCompatActivity {
 
@@ -101,10 +103,14 @@ public class newUser extends AppCompatActivity {
                                                                           Log.d(TAG, "createUserWithEmail:success");
                                                                           FirebaseUser user = mAuth.getCurrentUser();
                                                                           String temp_user=newuser.getUname().replaceAll("[.]","");
-                                                                          databaseReference.child("user_info").child(temp_user).setValue(user);
+                                                                          databaseReference.child("user_info").child(temp_user).setValue(newuser);
                                                                           databaseReference.child(newuser.getType()).child(temp_user).setValue(newuser.getUname());
                                                                           Toast.makeText(newUser.this, "User added", Toast.LENGTH_SHORT).show();
-                                                                          startActivity(new Intent(newUser.this, supervisor.class));
+                                                                          Intent intent = new Intent(newUser.this, supervisor.class);
+                                                                          intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                                          startActivity(intent);
+                                                                          finish();
+                                                                          //startActivity(new Intent(newUser.this, supervisor.class));
                                                                           //updateUI(user);
                                                                       } else {
                                                                           // If sign in fails, display a message to the user.
@@ -141,7 +147,9 @@ public class newUser extends AppCompatActivity {
         public boolean onOptionsItemSelected (MenuItem item){
             if (item.getItemId() == R.id.logOut) {
                 Intent intent = new Intent(newUser.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                finish();
 //            Toast.makeText(this,"logOut Clicked",Toast.LENGTH_SHORT).show();
             } else {
                 return super.onOptionsItemSelected(item);
