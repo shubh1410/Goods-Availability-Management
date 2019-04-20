@@ -174,8 +174,31 @@ public class viewInventory extends AppCompatActivity {
                                                         }
                                                     }));
                                                 } else if (user_type.equals("delete_product")) {
-                                                    mAdapter = new RecyclerAdaptor(item_List, 3);
+                                                    mAdapter = new RecyclerAdaptor(item_List, 1);
                                                     recyclerView.setAdapter(mAdapter);
+                                                    recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+                                                        @Override
+                                                        public void onClick(View view, int position) {
+                                                            Item_new temp = item_List.get(position);
+                                                            //Toast.makeText(getApplicationContext(), temp.toString() + " is selected!", Toast.LENGTH_SHORT).show();
+                                                            Log.d(TAG, "onClick: view temp data " + temp.toString());
+                                                            // Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
+
+
+                                                            Intent intent = new Intent(viewInventory.this, delete_item.class);
+                                                            // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            intent.putExtra("parcel_data", temp);
+
+                                                            //intent.putExtras(temp);
+                                                            startActivity(intent);
+                                                            //finish();
+                                                        }
+
+                                                        @Override
+                                                        public void onLongClick(View view, int position) {
+
+                                                        }
+                                                    }));
                                                 } else
                                                 {
                                                     mAdapter = new RecyclerAdaptor(item_List, 1);
