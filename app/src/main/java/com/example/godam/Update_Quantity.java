@@ -78,8 +78,9 @@ public class Update_Quantity extends AppCompatActivity {
                     Toast.makeText(Update_Quantity.this, "Quantity Added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Update_Quantity.this, viewInventory.class);
                     intent.putExtra("user_type", "update_quantity");
-
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
+                    //finish();
 
                 } else {
                     Toast.makeText(Update_Quantity.this, "Enter Valid Quantity", Toast.LENGTH_SHORT).show();
@@ -107,7 +108,9 @@ public class Update_Quantity extends AppCompatActivity {
                         Toast.makeText(Update_Quantity.this, "Quantity subtracted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Update_Quantity.this, viewInventory.class);
                         intent.putExtra("user_type", "update_quantity");
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(intent);
+                        //finish();
                     }
                 } else {
                     Toast.makeText(Update_Quantity.this, "Enter Valid Quantity", Toast.LENGTH_SHORT).show();

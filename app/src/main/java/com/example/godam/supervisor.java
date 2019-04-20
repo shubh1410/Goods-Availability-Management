@@ -30,10 +30,11 @@ public class supervisor extends AppCompatActivity
             public void onClick(View v)
             {
                 Intent intent = new Intent(supervisor.this, newUser.class);
-                //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
-                //finish();
+
                 Toast.makeText(supervisor.this, "Create New User", Toast.LENGTH_SHORT).show();
+                //finish();
             }
 
         });

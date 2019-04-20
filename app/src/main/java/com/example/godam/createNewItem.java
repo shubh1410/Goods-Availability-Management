@@ -71,7 +71,7 @@ public class createNewItem extends AppCompatActivity
                     Intent intent=new Intent(createNewItem.this, inventorymanagerview.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
-                    finish();
+                    //finish();
 
                     startActivity(new Intent(createNewItem.this, inventorymanagerview.class));
                 }

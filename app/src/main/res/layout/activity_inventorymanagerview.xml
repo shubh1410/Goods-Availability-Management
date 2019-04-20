@@ -28,7 +28,7 @@
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/update_item_info_btn"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
             android:background="@drawable/roundedbutton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2" />
+            app:layout_constraintTop_toBottomOf="@+id/update_item_info_btn" />
 
         <TextView
             android:id="@+id/textView"

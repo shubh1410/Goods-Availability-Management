@@ -82,8 +82,9 @@ public class delete_item extends AppCompatActivity {
                                 Toast.makeText(delete_item.this, "Item Deleted", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(delete_item.this, viewInventory.class);
                                 intent.putExtra("user_type", "delete_product");
-
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(intent);
+                                //finish();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener()
@@ -105,8 +106,9 @@ public class delete_item extends AppCompatActivity {
                 Toast.makeText(delete_item.this, "Cancel", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(delete_item.this, viewInventory.class);
                 intent.putExtra("user_type", "delete_product");
-
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
+                //finish();
 
             }
         });

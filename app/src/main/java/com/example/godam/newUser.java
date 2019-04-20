@@ -78,7 +78,12 @@ public class newUser extends AppCompatActivity {
                                                       pno.setError("Enter 10 digit phone number");
                                                       flag = false;
                                                   }
-                                                  if (!pass.equals(cpass)) {
+                                                  if (pass.length()<=7)
+                                                  {
+                                                      password.setError("Minimum Password length must be 8 Characters");
+                                                      flag = false;
+                                                  }
+                                                  if (!pass.equals(cpass) ){
                                                       //Toast.makeText(newUser.this, "password and confirm does not match", Toast.LENGTH_SHORT).show();
                                                       cpassword.setError("password and confirm password do  not match");
                                                       flag = false;
@@ -109,7 +114,7 @@ public class newUser extends AppCompatActivity {
                                                                           Intent intent = new Intent(newUser.this, supervisor.class);
                                                                           intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                                           startActivity(intent);
-                                                                          finish();
+                                                                          //finish();
                                                                           //startActivity(new Intent(newUser.this, supervisor.class));
                                                                           //updateUI(user);
                                                                       } else {

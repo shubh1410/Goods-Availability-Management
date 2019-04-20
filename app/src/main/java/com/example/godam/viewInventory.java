@@ -121,25 +121,24 @@ public class viewInventory extends AppCompatActivity {
                                                 if (user_type.equals("Supervisor")) {
                                                     mAdapter = new RecyclerAdaptor(item_List, 1);
                                                     recyclerView.setAdapter(mAdapter);
-                                                } else if (user_type.equals("InventoryManager")) {
+                                                } else if (user_type.equals("update_item_info_btn")) {
                                                     mAdapter = new RecyclerAdaptor(item_List, 1);
                                                     recyclerView.setAdapter(mAdapter);
                                                     recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
                                                         @Override
                                                         public void onClick(View view, int position) {
                                                             Item_new temp = item_List.get(position);
-                                                            //Toast.makeText(getApplicationContext(), temp.toString() + " is selected!", Toast.LENGTH_SHORT).show();
                                                             Log.d(TAG, "onClick: view temp data " + temp.toString());
                                                             Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
 
 
                                                             Intent intent = new Intent(viewInventory.this, updateItemInfo.class);
-                                                            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
-                                                            //intent.putExtras(temp);
+
                                                             startActivity(intent);
-                                                            //finish();
+                                                           // finish();
                                                         }
 
                                                         @Override
@@ -154,16 +153,12 @@ public class viewInventory extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(View view, int position) {
                                                             Item_new temp = item_List.get(position);
-                                                            //Toast.makeText(getApplicationContext(), temp.toString() + " is selected!", Toast.LENGTH_SHORT).show();
                                                             Log.d(TAG, "onClick: view temp data " + temp.toString());
-                                                           // Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
-
-
                                                             Intent intent = new Intent(viewInventory.this, Update_Quantity.class);
-                                                           // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
-                                                            //intent.putExtras(temp);
+
                                                             startActivity(intent);
                                                             //finish();
                                                         }
@@ -180,18 +175,15 @@ public class viewInventory extends AppCompatActivity {
                                                         @Override
                                                         public void onClick(View view, int position) {
                                                             Item_new temp = item_List.get(position);
-                                                            //Toast.makeText(getApplicationContext(), temp.toString() + " is selected!", Toast.LENGTH_SHORT).show();
                                                             Log.d(TAG, "onClick: view temp data " + temp.toString());
-                                                            // Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
 
 
                                                             Intent intent = new Intent(viewInventory.this, delete_item.class);
-                                                            // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
-                                                            //intent.putExtras(temp);
                                                             startActivity(intent);
-                                                            //finish();
+                                                           // finish();
                                                         }
 
                                                         @Override
@@ -199,8 +191,7 @@ public class viewInventory extends AppCompatActivity {
 
                                                         }
                                                     }));
-                                                } else
-                                                {
+                                                } else if (user_type.equals("view_inventory_button")) {
                                                     mAdapter = new RecyclerAdaptor(item_List, 1);
                                                     recyclerView.setAdapter(mAdapter);
                                                 }
