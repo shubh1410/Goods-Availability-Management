@@ -3,7 +3,7 @@
 
     <string-array name="userTypeList">
         <item>Inventory Manager</item>
-        <item>Superviser</item>
+        <item>Supervisor</item>
     </string-array>
 
     <string-array name="categoryList">
