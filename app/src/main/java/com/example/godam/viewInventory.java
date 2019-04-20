@@ -134,7 +134,7 @@ public class viewInventory extends AppCompatActivity {
 
 
                                                             Intent intent = new Intent(viewInventory.this, updateItemInfo.class);
-                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                            //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
                                                             //intent.putExtras(temp);
@@ -160,7 +160,7 @@ public class viewInventory extends AppCompatActivity {
 
 
                                                             Intent intent = new Intent(viewInventory.this, Update_Quantity.class);
-                                                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                                           // intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                                             intent.putExtra("parcel_data", temp);
 
                                                             //intent.putExtras(temp);
@@ -244,4 +244,6 @@ public class viewInventory extends AppCompatActivity {
         }
         return true;
     }
+
+
 }

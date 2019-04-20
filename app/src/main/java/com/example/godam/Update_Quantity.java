@@ -23,8 +23,6 @@ public class Update_Quantity extends AppCompatActivity {
     Spinner upqcategory;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
     private static final String TAG = "Update_Quantity";
 
 
@@ -74,15 +72,16 @@ public class Update_Quantity extends AppCompatActivity {
 
 
                     selected_data.setProduct_quantity(Integer.toString(new_quantity));
-                    //Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity,selected_data.getFb_key());
                     String key = selected_data.getFb_key();
                     databaseReference.child("Product_info").child(selected_data.getProduct_category()).child(key).setValue(selected_data);
                     databaseReference.child("Product_categories").child(selected_data.getProduct_category()).setValue(selected_data.getProduct_category());
                     databaseReference.child("Product_brand").child(selected_data.getProduct_category()).child(selected_data.getProduct_brand()).setValue(selected_data.getProduct_brand());
                     Toast.makeText(Update_Quantity.this, "Quantity Added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(Update_Quantity.this, viewInventory.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    intent.putExtra("user_type","update_quantity");
+
                     startActivity(intent);
+
                 }
                 else
                 {
@@ -107,14 +106,13 @@ public class Update_Quantity extends AppCompatActivity {
                     }
                     else {
                         selected_data.setProduct_quantity(Integer.toString(new_quantity));
-                        //Item_new item = new Item_new(prod_category,prod_pname,prod_pbrand,prod_modelno,prod_desc,prod_quantity,selected_data.getFb_key());
                         String key = selected_data.getFb_key();
                         databaseReference.child("Product_info").child(selected_data.getProduct_category()).child(key).setValue(selected_data);
                         databaseReference.child("Product_categories").child(selected_data.getProduct_category()).setValue(selected_data.getProduct_category());
                         databaseReference.child("Product_brand").child(selected_data.getProduct_category()).child(selected_data.getProduct_brand()).setValue(selected_data.getProduct_brand());
                         Toast.makeText(Update_Quantity.this, "Quantity subtracted", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(Update_Quantity.this, viewInventory.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        intent.putExtra("user_type","update_quantity");
                         startActivity(intent);
                     }
                 }
