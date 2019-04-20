@@ -75,7 +75,7 @@ public class updateItemInfo extends AppCompatActivity {
                     databaseReference.child("Product_categories").child(prod_category).setValue(prod_category);
                     databaseReference.child("Product_brand").child(prod_category).child(prod_pbrand).setValue(prod_pbrand);
                     Toast.makeText(updateItemInfo.this, "Item added", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(updateItemInfo.this, inventorymanagerview.class);
+                    Intent intent = new Intent(updateItemInfo.this, viewInventory.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     //finish();
