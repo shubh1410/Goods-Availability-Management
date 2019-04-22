@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,7 +21,7 @@ public class Update_Quantity extends AppCompatActivity {
 
     Button add_quantity_btn, sub_quantity_btn;
     EditText upqname, upqbrand, upquantity, upqdesc, upqmno, up_new_quantity;
-    Spinner upqcategory;
+    AutoCompleteTextView upqcategory;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
     private static final String TAG = "Update_Quantity";
@@ -39,7 +40,7 @@ public class Update_Quantity extends AppCompatActivity {
 
         add_quantity_btn = (Button) findViewById(R.id.Add_quantity_btn);
         sub_quantity_btn = (Button) findViewById(R.id.sub_quantity_btn);
-        upqcategory = (Spinner) findViewById(R.id.upqcategory);
+        upqcategory = (AutoCompleteTextView) findViewById(R.id.upqcategory);
         upqname = (EditText) findViewById(R.id.upqname);
         upqbrand = (EditText) findViewById(R.id.upqbrand);
         upquantity = (EditText) findViewById(R.id.upquantity);
@@ -47,13 +48,14 @@ public class Update_Quantity extends AppCompatActivity {
         upqmno = (EditText) findViewById(R.id.upqmno);
         up_new_quantity = (EditText) findViewById(R.id.up_new_quantity);
 
-
+        upqcategory.setText(selected_data.getProduct_category());
         upqname.setText(selected_data.getProduct_name());
         upqbrand.setText(selected_data.getProduct_brand());
         upquantity.setText(selected_data.getProduct_quantity());
         upqdesc.setText(selected_data.getProduct_desc());
         upqmno.setText(selected_data.getModel_number());
 
+        upqcategory.setEnabled(false);
         upqname.setEnabled(false);
         upqbrand.setEnabled(false);
         upquantity.setEnabled(false);

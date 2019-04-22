@@ -62,6 +62,7 @@ public class delete_item extends AppCompatActivity {
         deldesc.setText(selected_data.getProduct_desc());
         delmno.setText(selected_data.getModel_number());
 
+        delcategory.setEnabled(false);
         delname.setEnabled(false);
         delbrand.setEnabled(false);
         delquantity.setEnabled(false);
