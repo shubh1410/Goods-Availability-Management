@@ -2,16 +2,16 @@ package com.example.godam;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.godam.Utils.Item_new;
@@ -25,9 +25,11 @@ public class delete_item extends AppCompatActivity {
 
     Button delete_item_btn, cancel_del_btn;
     EditText delname, delbrand, delquantity, deldesc, delmno;
-    Spinner delcategory;
+    //Spinner delcategory;
+    AutoCompleteTextView delcategory;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+
      Item_new selected_data;
 
     @Override
@@ -44,7 +46,7 @@ public class delete_item extends AppCompatActivity {
 
         delete_item_btn = (Button) findViewById(R.id.delete_item_btn);
         cancel_del_btn = (Button) findViewById(R.id.cancel_del_btn);
-        delcategory = (Spinner) findViewById(R.id.delcategory);
+        delcategory = (AutoCompleteTextView) findViewById(R.id.delcategory);
         delname = (EditText) findViewById(R.id.delname);
         delbrand = (EditText) findViewById(R.id.delbrand);
         delquantity = (EditText) findViewById(R.id.delquantity);
@@ -52,6 +54,8 @@ public class delete_item extends AppCompatActivity {
         delmno = (EditText) findViewById(R.id.delmno);
 
 
+
+        delcategory.setText(selected_data.getProduct_category());
         delname.setText(selected_data.getProduct_name());
         delbrand.setText(selected_data.getProduct_brand());
         delquantity.setText(selected_data.getProduct_quantity());
@@ -63,6 +67,8 @@ public class delete_item extends AppCompatActivity {
         delquantity.setEnabled(false);
         deldesc.setEnabled(false);
         delmno.setEnabled(false);
+
+
 
 
         delete_item_btn.setOnClickListener(new View.OnClickListener() {

@@ -18,12 +18,11 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
             android:background="@drawable/roundedbutton"
             android:text="Create New Item"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -32,10 +31,10 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:text="Update Item Information"
             android:background="@drawable/roundedbutton"
+            android:text="Update Item Information"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,10 +45,10 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:text="Update Quantity"
             android:background="@drawable/roundedbutton"
+            android:text="Update Quantity"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/delete_product_button" />
@@ -59,16 +58,16 @@
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:text="View Inventory"
             android:background="@drawable/roundedbutton"
+            android:text="View Inventory"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_quantity_button" />
 
-        <Button
+        <!--<Button
             android:id="@+id/button6"
             android:layout_width="250dp"
             android:layout_height="40dp"
@@ -83,17 +82,17 @@
             app:layout_constraintHorizontal_bias="0.501"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/viewInventory"
-            app:layout_constraintVertical_bias="0.215" />
+            app:layout_constraintVertical_bias="0.215" />-->
 
         <Button
             android:id="@+id/delete_product_button"
             android:layout_width="250dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="48dp"
             android:layout_marginEnd="8dp"
-            android:text="Delete item"
             android:background="@drawable/roundedbutton"
+            android:text="Delete item"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/update_item_info_btn" />
