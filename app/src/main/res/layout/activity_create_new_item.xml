@@ -165,6 +165,7 @@
             android:layout_marginTop="18dp"
             android:layout_marginEnd="55dp"
             android:hint="Enter Category"
+            android:inputType="text"
             android:popupBackground="@drawable/gradient"
             android:textColor="@color/colorPrimaryDark"
             android:textColorHint="@color/colorPrimaryDark"
