@@ -1,13 +1,12 @@
 package com.example.godam;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-import android.view.Menu;
 
 public class inventorymanagerview extends AppCompatActivity
 {
@@ -32,7 +31,7 @@ public class inventorymanagerview extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
-                Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inventorymanagerview.this, "Create New Item", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
@@ -46,7 +45,7 @@ public class inventorymanagerview extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","update_item_info_btn");
                 startActivity(intent);
-                Toast.makeText(inventorymanagerview.this, "update_item_info_btn", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inventorymanagerview.this, "update_item_info_btn", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
@@ -60,7 +59,7 @@ public class inventorymanagerview extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","update_quantity");
                 startActivity(intent);
-                Toast.makeText(inventorymanagerview.this, "update_quantity", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inventorymanagerview.this, "update_quantity", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
@@ -74,7 +73,7 @@ public class inventorymanagerview extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","delete_product");
                 startActivity(intent);
-                Toast.makeText(inventorymanagerview.this, "delete_product", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inventorymanagerview.this, "delete_product", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
@@ -88,7 +87,7 @@ public class inventorymanagerview extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","view_inventory_button");
                 startActivity(intent);
-                Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(inventorymanagerview.this, "view Inventory", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 

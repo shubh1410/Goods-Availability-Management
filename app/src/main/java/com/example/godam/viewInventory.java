@@ -1,8 +1,8 @@
 package com.example.godam;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.example.godam.Utils.Item_new;
 import com.google.firebase.database.DataSnapshot;
@@ -129,7 +128,7 @@ public class viewInventory extends AppCompatActivity {
                                                         public void onClick(View view, int position) {
                                                             Item_new temp = item_List.get(position);
                                                             Log.d(TAG, "onClick: view temp data " + temp.toString());
-                                                            Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
+                                                            //Toast.makeText(viewInventory.this, temp.toString(), Toast.LENGTH_SHORT).show();
 
 
                                                             Intent intent = new Intent(viewInventory.this, updateItemInfo.class);

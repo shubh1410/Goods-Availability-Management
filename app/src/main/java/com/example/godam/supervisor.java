@@ -7,7 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -33,7 +32,7 @@ public class supervisor extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
 
-                Toast.makeText(supervisor.this, "Create New User", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(supervisor.this, "Create New User", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
@@ -49,7 +48,7 @@ public class supervisor extends AppCompatActivity
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.putExtra("user_type","Supervisor");
                 startActivity(intent);
-                Toast.makeText(supervisor.this, "View Inventory", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(supervisor.this, "View Inventory", Toast.LENGTH_SHORT).show();
                 //finish();
             }
 
