@@ -14,7 +14,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.godam.Utils.NewUser;
-import com.google.android.gms.flags.impl.DataUtils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -107,6 +106,7 @@ public class newUser extends AppCompatActivity {
                                                                           // Sign in success, update UI with the signed-in user's information
                                                                           Log.d(TAG, "createUserWithEmail:success");
                                                                           FirebaseUser user = mAuth.getCurrentUser();
+
                                                                           String temp_user=newuser.getUname().replaceAll("[.]","");
                                                                           databaseReference.child("user_info").child(temp_user).setValue(newuser);
                                                                           databaseReference.child(newuser.getType()).child(temp_user).setValue(newuser.getUname());
